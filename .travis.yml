@@ -10,7 +10,8 @@ env:
     - GOCD_VERSION=v17.11.0 ANSIBLE_VERSION=2.4.1.0
 
 script:
-  - docker build --build-arg GOCD_VERSION=$GOCD_VERSION --build-arg ANSINBLE_VERSION=$ANSINBLE_VERSION -t maticinsurance/gocd-agent-with-ansible:build .
+  - sed -i '.bak' "s/:GOCD_VERSION/:${GOCD_VERSION}/g" ./Dockerfile
+  - docker build --build-arg ANSINBLE_VERSION=$ANSINBLE_VERSION -t maticinsurance/gocd-agent-with-ansible:build .
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
