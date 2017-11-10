@@ -1,4 +1,4 @@
-ARG GOCD_VERSION
+ARG GOCD_VERSION=latest
 FROM gocd/gocd-agent-debian-8:${GOCD_VERSION}
 MAINTAINER Volodmyr Mykhailyk <volodymyr.mykhailyk@gmail.com>
 
