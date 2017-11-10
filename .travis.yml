@@ -11,12 +11,12 @@ env:
 
 script:
   - sed "s/:GOCD_VERSION/:${GOCD_VERSION}/g" < Dockerfile > live.docker
-  - docker build --build-arg ANSINBLE_VERSION=$ANSINBLE_VERSION -t maticinsurance/gocd-agent-with-ansible:build -f live.docker .
+  - docker build --build-arg ANSINBLE_VERSION=$ANSINBLE_VERSION -t maticinsurance/gocd-agent-with-ansible:build-${TRAVIS_BUILD_NUMBER} -f live.docker .
 
 after_success:
-  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+  - if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
     export DOCKER_IMAGE=maticinsurance/gocd-agent-with-ansible:gocd.${GOCD_VERSION}.ansible.${ANSIBLE_VERSION};
     docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
-    docker tag maticinsurance/gocd-agent-with-ansible:build $DOCKER_IMAGE;
+    docker tag maticinsurance/gocd-agent-with-ansible:build-${TRAVIS_BUILD_NUMBER} $DOCKER_IMAGE;
     docker push $DOCKER_IMAGE;
     fi
