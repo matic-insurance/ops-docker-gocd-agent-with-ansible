@@ -9,4 +9,6 @@ RUN apt-get update && apt-get -y install --no-install-recommends \
     python get-pip.py
 
 ARG ANSIBLE_VERSION
-RUN pip install ansible==${ANSIBLE_VERSION}
+RUN pip install pyyaml && \
+    pip install ansible==${ANSIBLE_VERSION}
+
