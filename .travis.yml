@@ -11,7 +11,7 @@ env:
 
 script:
   - sed "s/:GOCD_VERSION/:${GOCD_VERSION}/g" < Dockerfile > live.docker
-  - docker build --build-arg ANSIBLE_VERSION=${ANSINBLE_VERSION} -t maticinsurance/gocd-agent-with-ansible:build-${TRAVIS_BUILD_NUMBER} -f live.docker .
+  - docker build --build-arg ANSIBLE_VERSION=${ANSIBLE_VERSION} -t maticinsurance/gocd-agent-with-ansible:build-${TRAVIS_BUILD_NUMBER} -f live.docker .
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
