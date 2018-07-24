@@ -7,7 +7,9 @@ services:
 env:
   matrix:
     - GOCD_VERSION=v17.4.0 ANSIBLE_VERSION=2.4.1.0
+    - GOCD_VERSION=v17.4.0 ANSIBLE_VERSION=2.5.6.0
     - GOCD_VERSION=v17.11.0 ANSIBLE_VERSION=2.4.1.0
+    - GOCD_VERSION=v17.11.0 ANSIBLE_VERSION=2.5.6.0
 
 script:
   - sed "s/:GOCD_VERSION/:${GOCD_VERSION}/g" < Dockerfile > live.docker
