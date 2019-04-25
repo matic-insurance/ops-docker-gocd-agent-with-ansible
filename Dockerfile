@@ -1,4 +1,5 @@
-FROM gocd/gocd-agent-debian-8:v17.4.0
+ARG GOCD_VERSION=v19.2.0
+FROM gocd/gocd-agent-debian-8:${GOCD_VERSION}
 MAINTAINER Volodmyr Mykhailyk <volodymyr.mykhailyk@gmail.com>
 
 USER root
